@@ -4,15 +4,20 @@ A simple app using Python-Flask that logs in an user using Twitter account, disp
 
 ### Running the Code
 
-1. Make sure dependencies are installed. Code was tested on Python 2.7.X
+1. Clone this repo.
+   ```sh
+    git clone https://github.com/bassrehab/python-twitter-oauth.git
+   ```
+
+2. Make sure dependencies are installed. Code was tested on Python 2.7.X
 
     ```sh
     pip install flask
     pip install twitter
     ```
-2. Create a twitter app, fetch app consumer token/secrets and enter in web.py.
+3. Create a twitter app, fetch app consumer token/secrets and enter in web.py.
 
-3. Run, change debug/production mode.
+4. Run, change debug/production mode.
     ```sh
     $ python web.py
     ```
