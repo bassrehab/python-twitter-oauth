@@ -4,7 +4,7 @@ A simple app using Python-Flask that logs in an user using Twitter account, disp
 
 ### Running the Code
 
-1. Make sure dependencies are installed.
+1. Make sure dependencies are installed. Code was tested on Python 2.7.X
 
     ```sh
     pip install flask
