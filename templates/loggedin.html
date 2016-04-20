@@ -1,0 +1,67 @@
+<!doctype html>
+<head>
+	<title>Demo Twitter App: Subhadip Mitra</title>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{{
+        url_for('static', filename='style.css') }}">
+
+</head>
+
+{% block body %}
+
+
+	<div id="content">
+	<h2>Welcome.</h2>
+    {% if session['screen_name'] %}
+      Hello <b>{{ session['screen_name'] }} !</b>
+        <form method="post" action="{{ url_for('tweets') }}">
+          <label for="yourstatus">Enter your status below:</label>
+          <textarea name="yourstatus" placeholder="My new tweet"></textarea> <br />
+          <input type="hidden" name="screen_name" value="{{ session['screen_name'] }}" />
+          <input type="hidden" name="o_t" value="{{ session['oauth_token'] }}" />
+          <input type="hidden" name="o_t_s"  value="{{ session['oauth_token_secret'] }}"/>
+          <input type="submit" />
+        </form>
+    </div>
+
+
+    <div class="container-fluid" role="main">
+
+    {% if session['hasNewTweet'] == 'true' %}
+		<div class="alert success"> Your tweet was added </div>
+	{% endif %}
+
+ 	{% if session['hasErrors'] == 'true' %}
+		<div class="alert error"> Encountered Error. Couldn't add your tweet.</div>
+	{% endif %}
+
+        <table class="table table-hover table-condensed">
+            <thead><tr>
+                <th>Tweeted at</th>
+                <th>Tweet text</th>
+                
+            </tr></thead>
+            <tbody>
+                {% for status in session['results'] %}
+                    <tr>
+                        <td>{{ status.created_at }}</td>
+                        <td>{{ status.text}}</td>
+                        
+                       
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+  {% else %}
+    <p>
+      Sign in with twitter.
+    <p>
+      <a href="/authenticate">Sign IN</a>
+  {% endif %}
+{% endblock %}
+
+
+
